@@ -1,6 +1,6 @@
 class particula {
   // ATRIBUTOS
-  PVector pos, vel, fuerza;
+  PVector pos, posicionVieja, vel, fuerza;
   float masa;
   boolean estatica;
   boolean partFinal;
@@ -19,12 +19,12 @@ class particula {
   {  
     if (!estatica)
     {
-      if (euler)
+      if (motor)
       {
         // gravedad
-        fuerza.x += 0.0;
-        fuerza.y += 9.8;
-        fuerza.z += 0.0;
+        fuerza.x += fuerzaGravedad.x;
+        fuerza.y += fuerzaGravedad.y;
+        fuerza.z += fuerzaGravedad.z;
 
         // fricción
         float fuerzaFriccion = 0.995;
@@ -56,7 +56,49 @@ class particula {
       }
       else
       {
-       //implementar verlet
+       // Fuerzas
+        // Gravedad
+        fuerza.x += fuerzaGravedad.x;
+        fuerza.y += fuerzaGravedad.y;
+        fuerza.z += fuerzaGravedad.z;
+        
+        // Friccion
+        float fuerzaFriccion = 0.995;
+        fuerza.x += -(fuerzaFriccion);
+        fuerza.y += -(fuerzaFriccion); 
+        fuerza.z += -(fuerzaFriccion); 
+
+        // Aceleracion
+        PVector aceleracion = new PVector (0.0, 0.0, 0.0);
+        aceleracion.x = fuerza.x/masa;
+        aceleracion.y = fuerza.y/masa;
+        aceleracion.z = fuerza.z/masa;
+
+        // Velocity se elimina en verlet
+
+        // 2- Position
+        
+        PVector posicionVieja = new PVector (pos.x, pos.y, pos.z);
+        
+        PVector posicionNueva = new PVector (0.0, 0.0, 0.0);
+        posicionNueva.x = (2 * pos.x)-posicionVieja.x+(aceleracion.x *(inc_t * inc_t)); 
+        posicionNueva.y = (2 * pos.y)-posicionVieja.y+(aceleracion.y *(inc_t * inc_t));
+        posicionNueva.z = (2 * pos.z)-posicionVieja.z+(aceleracion.z *(inc_t * inc_t));
+
+        // guardamos la posicion antigua
+        posicionVieja.x = pos.x;
+        posicionVieja.y = pos.y;
+        posicionVieja.z = pos.z;
+        
+        // guardamos la posicion actual
+        pos.x = posicionNueva.x;
+        pos.y = posicionNueva.y;
+        pos.z = posicionNueva.z;
+
+        // 3 - Resert forces
+        fuerza.x = 0;
+        fuerza.y = 0;
+        fuerza.z = 0;
       }
     }
   }

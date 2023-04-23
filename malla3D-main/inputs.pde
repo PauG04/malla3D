@@ -23,11 +23,12 @@ void keyPressed()
   }
   if (keyCode == ' ')
   {
-    euler = !euler;
+    motor = !motor;
   }
   if (keyCode == 'W')
   {
-    elasticidad++;
+    if (elasticidad < 100)
+      elasticidad++;
   }
   if (keyCode == 'S')
   {
