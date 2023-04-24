@@ -15,12 +15,18 @@ float spawnY = -200.0f;
 float spawnZ = 0.0f;
 // SOLVER
 
-int elasticidad = 100;
+int elasticidad = 10;
 PVector fuerzaGravedad = new PVector (0.0, 9.8, 0.0);
 boolean motor = true;
 
 voxel voxel1;
 
+// VIENTO
+boolean vientoZ = false;
+boolean direccionViento = true;
+
+//Esfera
+PVector esfera = new PVector (200.0, 200, 100.0);
 
 // ZONA DE SETUP
 void setup() {
@@ -30,8 +36,7 @@ void setup() {
   initParticulas();
 
   initMuelles();
-  voxel1 = new voxel(250,250,100,100,
-  color(255),50.0,-50.0);
+  voxel1 = new voxel(color(255),50.0,-50.0);
 }
 
 // ZONA DE DRAW
@@ -41,12 +46,13 @@ void draw()
 
   pintarMotor();
   pintarElasticidad();
+  pintarVientoTexto();
   
   translate(width/10.0, height/10.0, -500);
   rotateX(-(asin(1/(sqrt(3)))));
   rotateY(radians(-45.0));
 
-
+  viento();
 
   calcularFuerzas();
 
@@ -57,4 +63,5 @@ void draw()
   pintarEsfera();
   
   voxel1.pintar_voxel();
+  fuerzaVoxel();
 }

@@ -1,25 +1,8 @@
 void keyPressed()
 {
-  if (keyCode == 'X')
-  {
-    for (int i = 0; i < numeroPart; i++)
-    {
-      particulaArray[i].fuerza.x += 10000.0;
-    }
-  }
-  if (keyCode == 'Y')
-  {
-    for (int i = 0; i < numeroPart; i++)
-    {
-      particulaArray[i].fuerza.y += 10000.0;
-    }
-  }
   if (keyCode == 'Z')
   {
-    for (int i = 0; i < numeroPart; i++)
-    {
-      particulaArray[i].fuerza.z += 10000.0;
-    }
+   vientoZ = !vientoZ;
   }
   if (keyCode == ' ')
   {
@@ -27,12 +10,36 @@ void keyPressed()
   }
   if (keyCode == 'W')
   {
-    if (elasticidad < 100)
+    if (elasticidad <= 90)
       elasticidad += 5;
   }
   if (keyCode == 'S')
   {
-    if (elasticidad > 1)
+    if (elasticidad >= 10)
       elasticidad -= 5;
+  }
+}
+
+
+void mousePressed()
+{
+  direccionViento = !direccionViento;
+}
+
+void viento()
+{
+  if (vientoZ)
+  {
+    for (int i = 0; i < numeroPart; i++)
+    {
+      for (int j = 0; j < elasticidad; j++)
+      {
+        if (direccionViento)
+          particulaArray[i].fuerza.z += 10.0;
+        else
+          particulaArray[i].fuerza.z -= 10.0;
+      }
+        
+    }
   }
 }

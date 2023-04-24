@@ -1,18 +1,19 @@
 class particula {
   // ATRIBUTOS
   PVector pos, posicionVieja, vel, fuerza;
-  float masa;
+  float masa, size;
   boolean estatica;
   boolean partFinal;
 
   // CONSTRUCTOR
-  particula(PVector p, PVector v, float m, boolean e, boolean pF) {
+  particula(PVector p, PVector v, float m, boolean e, boolean pF, float s) {
     pos = p;
     vel = v;
     fuerza = new PVector(0.0, 0.0, 0.0);
     masa = m;
     estatica = e;
     partFinal = pF;
+    size = s;
   }
   // MÉTODOS
   void muevete() 
@@ -122,22 +123,22 @@ void initParticulas()
   {
     if (i == 9)
     {
-      particulaArray[i] = new particula(new PVector(spawnX, spawnY, spawnZ), new PVector(0.0, 0.0, 0.0), 1.0, true, true);
+      particulaArray[i] = new particula(new PVector(spawnX, spawnY, spawnZ), new PVector(0.0, 0.0, 0.0), 1.0, true, true, 15);
       spawnY += 50.0f;
       spawnX = -50.0f;
       spawnZ += 50.0f;
     } else if (i == 0)
     {
-      particulaArray[i] = new particula(new PVector(spawnX, spawnY, spawnZ), new PVector(0.0, 0.0, 0.0), 1.0, true, false);
-    } else if (i % partXFila == 9)
+      particulaArray[i] = new particula(new PVector(spawnX, spawnY, spawnZ), new PVector(0.0, 0.0, 0.0), 1.0, true, false,15);
+    } else if (i % partXFila == (partXFila - 1))
     {
-      particulaArray[i] = new particula(new PVector(spawnX, spawnY, spawnZ), new PVector(0.0, 0.0, 0.0), 1.0, false, true);
+      particulaArray[i] = new particula(new PVector(spawnX, spawnY, spawnZ), new PVector(0.0, 0.0, 0.0), 1.0, false, true,15);
       spawnY += 50.0f;
       spawnX = -50.0f;
       spawnZ += 50.0f;
     } else
     {
-      particulaArray[i] = new particula(new PVector(spawnX, spawnY, spawnZ), new PVector(0.0, 0.0, 0.0), 1.0, false, false);
+      particulaArray[i] = new particula(new PVector(spawnX, spawnY, spawnZ), new PVector(0.0, 0.0, 0.0), 1.0, false, false,15);
     }
     spawnX += 50.0f;
   }
