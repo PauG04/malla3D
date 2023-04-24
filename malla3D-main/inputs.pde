@@ -4,21 +4,21 @@ void keyPressed()
   {
     for (int i = 0; i < numeroPart; i++)
     {
-      particulaArray[i].fuerza.x += 1000.0;
+      particulaArray[i].fuerza.x += 10000.0;
     }
   }
   if (keyCode == 'Y')
   {
     for (int i = 0; i < numeroPart; i++)
     {
-      particulaArray[i].fuerza.y += 1000.0;
+      particulaArray[i].fuerza.y += 10000.0;
     }
   }
   if (keyCode == 'Z')
   {
     for (int i = 0; i < numeroPart; i++)
     {
-      particulaArray[i].fuerza.z += 1000.0;
+      particulaArray[i].fuerza.z += 10000.0;
     }
   }
   if (keyCode == ' ')
@@ -28,11 +28,11 @@ void keyPressed()
   if (keyCode == 'W')
   {
     if (elasticidad < 100)
-      elasticidad++;
+      elasticidad += 5;
   }
   if (keyCode == 'S')
   {
     if (elasticidad > 1)
-      elasticidad--;
+      elasticidad -= 5;
   }
 }

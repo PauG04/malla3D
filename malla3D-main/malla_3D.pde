@@ -15,7 +15,7 @@ float spawnY = -200.0f;
 float spawnZ = 0.0f;
 // SOLVER
 
-int elasticidad = 1;
+int elasticidad = 100;
 PVector fuerzaGravedad = new PVector (0.0, 9.8, 0.0);
 boolean motor = true;
 
@@ -38,18 +38,10 @@ void setup() {
 void draw()
 {
   background(0);
-  fill(255);
-  textSize(20);
-  if (motor)
-  {
-    inc_t = 0.1;
-    text("Solver: Euler", 670, 30);
-  } 
-  else
-  { 
-    inc_t = 0.4;
-    text("Solver: Verlet", 670, 30);
-  }
+
+  pintarMotor();
+  pintarElasticidad();
+  
   translate(width/10.0, height/10.0, -500);
   rotateX(-(asin(1/(sqrt(3)))));
   rotateY(radians(-45.0));
@@ -64,5 +56,5 @@ void draw()
 
   pintarEsfera();
   
-   voxel1.pintar_voxel();
+  voxel1.pintar_voxel();
 }
