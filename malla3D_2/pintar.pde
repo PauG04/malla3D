@@ -8,7 +8,7 @@ void pintarMotor()
     text("Solver: Euler", 500, 30);
   } else
   {
-    inc_t = 0.04;
+    inc_t = 0.08;
     text("Solver: Verlet", 500, 30);
   }
 }
@@ -35,10 +35,10 @@ void pintarVientoTexto()
   text("Direccion viento: ", 500, 90);
   if(direccionViento)
   {
-    text("Positiva", 700, 90);
+    text("Positivo", 650, 90);
   }
   else
   {
-    text("Negativa", 700, 90);
+    text("Negativo", 650, 90);
   }
 }

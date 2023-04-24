@@ -1,4 +1,4 @@
-class muelle { //<>//
+class muelle { //<>// //<>// //<>//
   // ATRIBUTOS
   particula part1;
   particula part2;
@@ -26,9 +26,13 @@ class muelle { //<>//
     float difDistancia = longitud_natural - distActual;
     float KF = difDistancia / distActual / 2.0;
 
-    PVector fuerzaMuelle = part2.pos.get();
-    fuerzaMuelle.sub(part1.pos);
-    fuerzaMuelle.mult(KF);
+    PVector fuerzaMuelle = new PVector(0.0, 0.0, 0.0);
+    fuerzaMuelle.x = part2.pos.x - part1.pos.x;
+    fuerzaMuelle.y = part2.pos.y - part1.pos.y;
+    fuerzaMuelle.z = part2.pos.z - part1.pos.z;
+    fuerzaMuelle.x *= KF;
+    fuerzaMuelle.y *= KF;
+    fuerzaMuelle.z *= KF;
 
     if (!part1.estatica)
     {
